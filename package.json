@@ -1,0 +1,26 @@
+{
+  "name": "my-own-choice-shop-opgave",
+  "version": "1.0.0",
+  "description": "Planlæg og udvikle et api til en webshop efter mit eget valg.",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Hedemann-Nielsen/my-own-choice-shop-opgave.git"
+  },
+  "author": "Tanja Hedemann",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Hedemann-Nielsen/my-own-choice-shop-opgave/issues"
+  },
+  "homepage": "https://github.com/Hedemann-Nielsen/my-own-choice-shop-opgave#readme",
+  "dependencies": {
+    "dotenv": "^16.3.1",
+    "express": "^4.18.2",
+    "mysql2": "^3.6.5",
+    "sequelize": "^6.35.1"
+  }
+}
