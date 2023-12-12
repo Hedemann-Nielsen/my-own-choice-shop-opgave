@@ -1,8 +1,16 @@
 import Products from "../models/product.model.js";
+import Brand from "../models/brand.model.js";
+import Categories from "../models/category.model.js";
+import CategoryProductRel from "../models/category_product_rel.model.js";
 
-class ProductController {
+Products.belongsTo(Brand);
+
+Products.belongsToMany(Categories, { through: CategoryProductRel });
+Categories.belongsToMany(Products, { through: CategoryProductRel });
+
+export default class ProductController {
 	constructor() {}
-	//hent alle produkter
+	// Retrieve a list of records
 	listAll = async (req, res) => {
 		const result = await Products.findAll({
 			order: ["name"],
@@ -10,31 +18,36 @@ class ProductController {
 		res.json(result);
 	};
 
-	//hent produkt detaljer
-	getOne = async (id) => {
-		const result = await Products.findByPk(id)({
-			where: { id: req.params.id },
+	// Get a list of details on a particular record
+	getone = async (id) => {
+		const result = await Products.findByPk(id, {
+			include: [
+				{
+					model: Brand,
+				},
+				{
+					model: Category,
+				},
+			],
 		});
-		res.json(...result);
+		return result;
 	};
 
-	// opret nyt produkt
+	// Create a record
 	create = async (data) => {
 		const result = await Products.create(data);
 		return result;
 	};
 
-	//Opdater et produkt
+	// Update a record
 	update = async (data) => {
 		const result = await Products.update(data, { where: { id: data.id } });
 		return result;
 	};
 
-	//slet et produkt
+	// Deletes a record
 	delete = async (id) => {
 		const result = await Products.destroy({ where: { id: data.id } });
 		return result;
 	};
 }
-
-export default ProductController;

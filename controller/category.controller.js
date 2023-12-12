@@ -1,8 +1,12 @@
 import Category from "../models/category.model.js";
+import CategoryProductRel from "../models/category_product_rel.model.js";
+import Products from "../models/product.model.js";
+
+Category.belongsToMany(Products, { through: CategoryProductRel });
 
 class CategoryController {
 	constructor() {}
-	//hent alle produkter
+	// Retrieve a list of records
 	listAll = async (req, res) => {
 		const result = await Category.findAll({
 			order: ["name"],
@@ -10,7 +14,7 @@ class CategoryController {
 		res.json(result);
 	};
 
-	//hent produkt detaljer
+	// Get a list of details on a particular record
 	getOne = async (id) => {
 		const result = await Category.findByPk(id)({
 			where: { id: req.params.id },
@@ -18,19 +22,19 @@ class CategoryController {
 		res.json(...result);
 	};
 
-	// opret nyt produkt
+	// Create a record
 	create = async (data) => {
 		const result = await Category.create(data);
 		return result;
 	};
 
-	//Opdater et produkt
+	// Update a record
 	update = async (data) => {
 		const result = await Category.update(data, { where: { id: data.id } });
 		return result;
 	};
 
-	//slet et produkt
+	// Deletes a record
 	delete = async (id) => {
 		const result = await Category.destroy({ where: { id: data.id } });
 		return result;

@@ -3,19 +3,19 @@ import ProductController from "../controller/product.controller.js";
 const controller = new ProductController();
 const router = express.Router();
 
-//henter alle
-router.get("/product", async (req, res) => {
+// Retrieve a list of records
+router.get("/products", async (req, res) => {
 	const result = await controller.listAll();
 	res.json(result);
 });
 
-//henter detaljer
+// Get a list of details on a particular record
 router.get("/product/:id([0-9]*)", async (req, res) => {
 	const result = await controller.getOne(req.params.id);
 	res.json(result);
 });
 
-//opret
+// Create a record
 router.post("/product", async (req, res) => {
 	try {
 		const result = await controller.create(req.body);
@@ -28,7 +28,7 @@ router.post("/product", async (req, res) => {
 	}
 });
 
-//opdater
+// Update a record
 router.put("/product", async (req, res) => {
 	try {
 		await controller.update(req.body);
@@ -40,7 +40,7 @@ router.put("/product", async (req, res) => {
 	}
 });
 
-//sletter
+// Deletes a record
 router.delete("/product/:id([0-9]*)", async (req, res) => {
 	try {
 		await controller.delete(req.params.id);

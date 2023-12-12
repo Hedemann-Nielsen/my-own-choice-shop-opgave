@@ -1,9 +1,10 @@
 import { sequelize } from "../config/db.config.js";
 import { Sequelize, DataTypes, Model } from "sequelize";
+import Brand from "./brand.model.js";
 
 class Products extends Model {}
 
-Products.init(
+export default Products.init(
 	{
 		id: {
 			type: DataTypes.INTEGER,
@@ -37,6 +38,10 @@ Products.init(
 		brand_id: {
 			type: DataTypes.INTEGER,
 			allowNull: false,
+			references: {
+				model: Brand,
+				key: "id",
+			},
 		},
 	},
 	{
@@ -46,5 +51,3 @@ Products.init(
 		freezeTableName: true, // Brug denne hvis du vil undgå table names i flertal tabellen
 	}
 );
-
-export default Products;
