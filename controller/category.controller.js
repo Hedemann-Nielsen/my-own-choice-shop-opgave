@@ -36,7 +36,7 @@ class CategoryController {
 
 	// Deletes a record
 	delete = async (id) => {
-		const result = await Category.destroy({ where: { id: data.id } });
+		const result = await Category.destroy(id, { where: { id: data.id } });
 		return result;
 	};
 }

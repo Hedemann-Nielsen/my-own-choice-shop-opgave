@@ -1,10 +1,10 @@
-import Brand from "../models/brand.model.js";
+import Gender from "../models/Gender.model.js";
 
-class BrandController {
+class GenderController {
 	constructor() {}
 	// Retrieve a list of records
 	listAll = async (req, res) => {
-		const result = await Brand.findAll({
+		const result = await Gender.findAll({
 			order: ["name"],
 		});
 		res.json(result);
@@ -12,7 +12,7 @@ class BrandController {
 
 	// Get a list of details on a particular record
 	getOne = async (id) => {
-		const result = await Brand.findByPk(id)({
+		const result = await Gender.findByPk(id)({
 			where: { id: req.params.id },
 		});
 		res.json(...result);
@@ -20,21 +20,21 @@ class BrandController {
 
 	// Create a record
 	create = async (data) => {
-		const result = await Brand.create(data);
+		const result = await Gender.create(data);
 		return result;
 	};
 
 	// Update a record
 	update = async (data) => {
-		const result = await Brand.update(data, { where: { id: data.id } });
+		const result = await Gender.update(data, { where: { id: data.id } });
 		return result;
 	};
 
 	// Deletes a record
 	delete = async (id) => {
-		const result = await Brand.destroy(id, { where: { id: data.id } });
+		const result = await Gender.destroy(id, { where: { id: data.id } });
 		return result;
 	};
 }
 
-export default BrandController;
+export default GenderController;

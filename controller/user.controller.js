@@ -1,40 +1,38 @@
-import Brand from "../models/brand.model.js";
+import User from "../models/user.model.js";
 
-class BrandController {
+export default class UserController {
 	constructor() {}
 	// Retrieve a list of records
 	listAll = async (req, res) => {
-		const result = await Brand.findAll({
-			order: ["name"],
+		const result = await User.findAll({
+			order: ["firstname"],
 		});
 		res.json(result);
 	};
 
 	// Get a list of details on a particular record
 	getOne = async (id) => {
-		const result = await Brand.findByPk(id)({
+		const result = await User.findByPk(id, {
 			where: { id: req.params.id },
 		});
-		res.json(...result);
+		return result;
 	};
 
 	// Create a record
 	create = async (data) => {
-		const result = await Brand.create(data);
+		const result = await User.create(data);
 		return result;
 	};
 
 	// Update a record
 	update = async (data) => {
-		const result = await Brand.update(data, { where: { id: data.id } });
+		const result = await User.update(data, { where: { id: data.id } });
 		return result;
 	};
 
 	// Deletes a record
 	delete = async (id) => {
-		const result = await Brand.destroy(id, { where: { id: data.id } });
+		const result = await User.destroy(id, { where: { id: data.id } });
 		return result;
 	};
 }
-
-export default BrandController;

@@ -19,7 +19,7 @@ export default class ProductController {
 	};
 
 	// Get a list of details on a particular record
-	getone = async (id) => {
+	getOne = async (id) => {
 		const result = await Products.findByPk(id, {
 			include: [
 				{
@@ -47,7 +47,7 @@ export default class ProductController {
 
 	// Deletes a record
 	delete = async (id) => {
-		const result = await Products.destroy({ where: { id: data.id } });
+		const result = await Products.destroy(id, { where: { id: data.id } });
 		return result;
 	};
 }
