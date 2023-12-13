@@ -1,10 +1,13 @@
 import express from "express";
 import dotenv from "dotenv";
+
 import { SyncRouter } from "./routes/sync.routes.js";
-import { ProductsRouter } from "./routes/product.routes.js";
-import { CategoryRouter } from "./routes/category.routes.js";
 import { BrandRouter } from "./routes/brand.routes.js";
+import { CategoryRouter } from "./routes/category.routes.js";
+import { GenderRouter } from "./routes/gender.routes.js";
+import { ProductsRouter } from "./routes/product.routes.js";
 import { UserRouter } from "./routes/user.routes.js";
+// import { ReviewRouter } from "./routes/reviews.routes.js";
 
 dotenv.config();
 const app = express();
@@ -13,7 +16,15 @@ const port = process.env.PORT || 4000;
 // Udvider app i index.js så vi kan læse form body data
 app.use(express.urlencoded({ extended: true }));
 
-app.use(SyncRouter, ProductsRouter, CategoryRouter, BrandRouter, UserRouter);
+app.use(
+	SyncRouter,
+	CategoryRouter
+	// BrandRouter,
+	// GenderRouter,
+	// ProductsRouter,
+	// UserRouter
+	// ReviewRouter
+);
 
 app.listen(port, () => {
 	console.log(`server køre med port http://localhost:${port}`);

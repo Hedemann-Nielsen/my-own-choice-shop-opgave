@@ -20,7 +20,7 @@ export default Categories.init(
 	{
 		sequelize,
 		modelName: "Categories",
-		underscored: true, // Brug underscores istedet for standarden CamelCase
-		freezeTableName: true, // Brug denne hvis du vil undgå table names i flertal tabellen
+		// underscored: true, // Brug underscores istedet for standarden CamelCase
+		// freezeTableName: true, // Brug denne hvis du vil undgå table names i flertal tabellen
 	}
 );

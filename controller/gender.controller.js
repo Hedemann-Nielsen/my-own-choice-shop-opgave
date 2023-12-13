@@ -1,4 +1,7 @@
 import Gender from "../models/Gender.model.js";
+import User from "../models/user.model.js";
+
+Gender.hasMany(User);
 
 class GenderController {
 	constructor() {}
@@ -7,15 +10,13 @@ class GenderController {
 		const result = await Gender.findAll({
 			order: ["name"],
 		});
-		res.json(result);
+		return result;
 	};
 
 	// Get a list of details on a particular record
 	getOne = async (id) => {
-		const result = await Gender.findByPk(id)({
-			where: { id: req.params.id },
-		});
-		res.json(...result);
+		const result = await Gender.findByPk(id);
+		return result;
 	};
 
 	// Create a record
@@ -32,7 +33,7 @@ class GenderController {
 
 	// Deletes a record
 	delete = async (id) => {
-		const result = await Gender.destroy(id, { where: { id: data.id } });
+		const result = await Gender.destroy({ where: { id: id } });
 		return result;
 	};
 }

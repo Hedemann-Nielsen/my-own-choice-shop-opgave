@@ -1,4 +1,9 @@
 import User from "../models/user.model.js";
+import Gender from "../models/Gender.model.js";
+// import Reviews from "../models/reviews.model.js";
+
+User.belongsTo(Gender);
+// User.hasMany(Reviews);
 
 export default class UserController {
 	constructor() {}
@@ -7,14 +12,12 @@ export default class UserController {
 		const result = await User.findAll({
 			order: ["firstname"],
 		});
-		res.json(result);
+		return result;
 	};
 
 	// Get a list of details on a particular record
 	getOne = async (id) => {
-		const result = await User.findByPk(id, {
-			where: { id: req.params.id },
-		});
+		const result = await User.findByPk(id);
 		return result;
 	};
 
@@ -32,7 +35,7 @@ export default class UserController {
 
 	// Deletes a record
 	delete = async (id) => {
-		const result = await User.destroy(id, { where: { id: data.id } });
+		const result = await User.destroy({ where: { id: id } });
 		return result;
 	};
 }

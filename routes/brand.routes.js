@@ -14,7 +14,6 @@ router.get("/brand/:id([0-9]*)", async (req, res) => {
 	const result = await controller.getOne(req.params.id);
 	res.json(result);
 });
-
 // Create a record
 router.post("/brand", async (req, res) => {
 	try {

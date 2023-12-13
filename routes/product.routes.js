@@ -45,7 +45,7 @@ router.delete("/product/:id([0-9]*)", async (req, res) => {
 	try {
 		await controller.delete(req.params.id);
 		res.send({
-			message: "Deleted successfully",
+			message: "Record deleted successfully",
 		});
 	} catch (error) {
 		res.send(error.message);

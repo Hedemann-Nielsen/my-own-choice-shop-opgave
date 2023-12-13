@@ -39,7 +39,7 @@ export default Products.init(
 			type: DataTypes.INTEGER,
 			allowNull: false,
 			references: {
-				model: Brand,
+				model: "Brand",
 				key: "id",
 			},
 		},

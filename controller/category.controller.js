@@ -9,19 +9,16 @@ class CategoryController {
 	// Retrieve a list of records
 	listAll = async (req, res) => {
 		const result = await Category.findAll({
-			order: ["name"],
+			order: ["title"],
 		});
-		res.json(result);
+		return result;
 	};
 
 	// Get a list of details on a particular record
 	getOne = async (id) => {
-		const result = await Category.findByPk(id)({
-			where: { id: req.params.id },
-		});
-		res.json(...result);
+		const result = await Category.findByPk(id);
+		return result;
 	};
-
 	// Create a record
 	create = async (data) => {
 		const result = await Category.create(data);
@@ -36,7 +33,7 @@ class CategoryController {
 
 	// Deletes a record
 	delete = async (id) => {
-		const result = await Category.destroy(id, { where: { id: data.id } });
+		const result = await Category.destroy({ where: { id: id } });
 		return result;
 	};
 }

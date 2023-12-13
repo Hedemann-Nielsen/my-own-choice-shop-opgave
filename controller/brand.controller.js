@@ -1,4 +1,7 @@
 import Brand from "../models/brand.model.js";
+import Products from "../models/product.model.js";
+
+Brand.hasMany(Products);
 
 class BrandController {
 	constructor() {}
@@ -7,15 +10,13 @@ class BrandController {
 		const result = await Brand.findAll({
 			order: ["name"],
 		});
-		res.json(result);
+		return result;
 	};
 
 	// Get a list of details on a particular record
 	getOne = async (id) => {
-		const result = await Brand.findByPk(id)({
-			where: { id: req.params.id },
-		});
-		res.json(...result);
+		const result = await Brand.findByPk(id);
+		return result;
 	};
 
 	// Create a record
@@ -32,7 +33,7 @@ class BrandController {
 
 	// Deletes a record
 	delete = async (id) => {
-		const result = await Brand.destroy(id, { where: { id: data.id } });
+		const result = await Brand.destroy({ where: { id: id } });
 		return result;
 	};
 }

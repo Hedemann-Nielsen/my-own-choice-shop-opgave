@@ -19,7 +19,7 @@ export default CategoryProductRel.init(
 			type: DataTypes.INTEGER,
 			allowNull: false,
 			references: {
-				model: Categories,
+				model: "Categories",
 				key: "id",
 			},
 		},
@@ -27,7 +27,7 @@ export default CategoryProductRel.init(
 			type: DataTypes.INTEGER,
 			allowNull: false,
 			references: {
-				model: Products,
+				model: "Products",
 				key: "id",
 			},
 		},

@@ -4,19 +4,19 @@ const controller = new GenderController();
 const router = express.Router();
 
 // Retrieve a list of records
-router.get("/Genders", async (req, res) => {
+router.get("/genders", async (req, res) => {
 	const result = await controller.listAll();
 	res.json(result);
 });
 
 // Get a list of details on a particular record
-router.get("/Gender/:id([0-9]*)", async (req, res) => {
+router.get("/gender/:id([0-9]*)", async (req, res) => {
 	const result = await controller.getOne(req.params.id);
 	res.json(result);
 });
 
 // Create a record
-router.post("/Gender", async (req, res) => {
+router.post("/gender", async (req, res) => {
 	try {
 		const result = await controller.create(req.body);
 		res.send({
@@ -29,7 +29,7 @@ router.post("/Gender", async (req, res) => {
 });
 
 // Update a record
-router.put("/Gender", async (req, res) => {
+router.put("/gender", async (req, res) => {
 	try {
 		await controller.update(req.body);
 		res.send({
@@ -41,7 +41,7 @@ router.put("/Gender", async (req, res) => {
 });
 
 // Deletes a record
-router.delete("/Gender/:id([0-9]*)", async (req, res) => {
+router.delete("/gender/:id([0-9]*)", async (req, res) => {
 	try {
 		await controller.delete(req.params.id);
 		res.send({

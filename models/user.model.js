@@ -32,31 +32,31 @@ export default User.init(
 			type: DataTypes.STRING,
 			allowNull: false,
 			validate: {
-				isStrongPassword: {
-					args: [
-						{
-							minLength: 8,
-							minLowercase: 1,
-							minUppercase: 1,
-							minNumbers: 1,
-						},
-					],
-					msg: "Password must be at least 8 characters long, contain at least 1 lowercase letter, 1 uppercase letter, and 1 number.",
+				notNull: {
+					msg: "A password must be provided",
+				},
+				notEmpty: {
+					msg: "Please enter a password",
+				},
+				not: {
+					args: /^[a-z]+$/i,
+					msg: "Password must contain at least one uppercase letter, one lowercase letter, and one number",
 				},
 			},
 		},
+
 		gender_id: {
 			type: DataTypes.INTEGER,
-			allowNull: false,
+			allowNull: true,
 			references: {
-				model: Gender,
+				model: "Gender",
 				key: "id",
 			},
 		},
 	},
 	{
 		sequelize,
-		modelName: "User",
+		modelName: "Users",
 		underscored: true, // Brug underscores istedet for standarden CamelCase
 	}
 );

@@ -5,19 +5,19 @@ const controller = new UserController();
 const router = express.Router();
 
 // Retrieve a list of records
-router.get("/User", async (req, res) => {
+router.get("/users", async (req, res) => {
 	const result = await controller.listAll();
 	res.json(result);
 });
 
 // Get a list of details on a particular record
-router.get("/User/:id([0-9]*)", async (req, res) => {
+router.get("/user/:id([0-9]*)", async (req, res) => {
 	const result = await controller.getOne(req.params.id);
 	res.json(result);
 });
 
 // Create a record
-router.post("/User", async (req, res) => {
+router.post("/user", async (req, res) => {
 	try {
 		const result = await controller.create(req.body);
 		res.send({
@@ -30,7 +30,7 @@ router.post("/User", async (req, res) => {
 });
 
 // Update a record
-router.put("/User", async (req, res) => {
+router.put("/user", async (req, res) => {
 	try {
 		await controller.update(req.body);
 		res.send({
@@ -42,7 +42,7 @@ router.put("/User", async (req, res) => {
 });
 
 // Deletes a record
-router.delete("/User/:id([0-9]*)", async (req, res) => {
+router.delete("/user/:id([0-9]*)", async (req, res) => {
 	try {
 		await controller.delete(req.params.id);
 		res.send({
