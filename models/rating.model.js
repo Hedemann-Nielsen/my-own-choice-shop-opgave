@@ -1,6 +1,5 @@
 import { sequelize } from "../config/db.config.js";
 import { Sequelize, DataTypes, Model } from "sequelize";
-import Product from "../models/product.model.js";
 import User from "../models/user.model.js";
 
 class Rating extends Model {}
@@ -22,10 +21,6 @@ Rating.init(
 		},
 		product_id: {
 			type: DataTypes.INTEGER,
-			references: {
-				model: "Product",
-				key: "id",
-			},
 		},
 		user_id: {
 			type: DataTypes.INTEGER,
