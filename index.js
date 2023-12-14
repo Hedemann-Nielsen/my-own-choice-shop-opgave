@@ -5,9 +5,9 @@ import { SyncRouter } from "./routes/sync.routes.js";
 import { BrandRouter } from "./routes/brand.routes.js";
 import { CategoryRouter } from "./routes/category.routes.js";
 import { GenderRouter } from "./routes/gender.routes.js";
-import { ProductsRouter } from "./routes/product.routes.js";
+import { ProductRouter } from "./routes/product.routes.js";
 import { UserRouter } from "./routes/user.routes.js";
-// import { ReviewRouter } from "./routes/reviews.routes.js";
+import { RatingRouter } from "./routes/rating.routes.js";
 
 dotenv.config();
 const app = express();
@@ -18,12 +18,12 @@ app.use(express.urlencoded({ extended: true }));
 
 app.use(
 	SyncRouter,
-	CategoryRouter
-	// BrandRouter,
-	// GenderRouter,
-	// ProductsRouter,
-	// UserRouter
-	// ReviewRouter
+	CategoryRouter,
+	RatingRouter,
+	BrandRouter,
+	GenderRouter,
+	ProductRouter,
+	UserRouter
 );
 
 app.listen(port, () => {

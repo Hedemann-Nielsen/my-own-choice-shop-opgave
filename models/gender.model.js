@@ -18,7 +18,6 @@ Gender.init(
 	},
 	{
 		sequelize,
-		modelName: "Gender",
 		underscored: true, // Brug underscores istedet for standarden CamelCase
 		freezeTableName: true, // Brug denne hvis du vil undgå table names i flertal tabellen
 	}

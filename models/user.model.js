@@ -1,6 +1,6 @@
 import { sequelize } from "../config/db.config.js";
 import { Sequelize, DataTypes, Model } from "sequelize";
-import Gender from "./Gender.model.js";
+import Gender from "./gender.model.js";
 
 class User extends Model {}
 
@@ -49,14 +49,14 @@ export default User.init(
 			type: DataTypes.INTEGER,
 			allowNull: true,
 			references: {
-				model: "Gender",
+				model: Gender,
 				key: "id",
 			},
 		},
 	},
 	{
 		sequelize,
-		modelName: "Users",
+		modelName: "User",
 		underscored: true, // Brug underscores istedet for standarden CamelCase
 	}
 );

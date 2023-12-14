@@ -1,22 +1,22 @@
 import express from "express";
-import ProductController from "../controller/product.controller.js";
-const controller = new ProductController();
+import RatingController from "../controller/rating.controller.js";
+const controller = new RatingController();
 const router = express.Router();
 
 // Retrieve a list of records
-router.get("/products", async (req, res) => {
+router.get("/ratings", async (req, res) => {
 	const result = await controller.listAll();
 	res.json(result);
 });
 
 // Get a list of details on a particular record
-router.get("/product/:id([0-9]*)", async (req, res) => {
+router.get("/rating/:id([0-9]*)", async (req, res) => {
 	const result = await controller.getOne(req.params.id);
 	res.json(result);
 });
 
 // Create a record
-router.post("/product", async (req, res) => {
+router.post("/rating", async (req, res) => {
 	try {
 		const result = await controller.create(req.body);
 		res.send({
@@ -29,7 +29,7 @@ router.post("/product", async (req, res) => {
 });
 
 // Update a record
-router.put("/product", async (req, res) => {
+router.put("/rating", async (req, res) => {
 	try {
 		await controller.update(req.body);
 		res.send({
@@ -41,7 +41,7 @@ router.put("/product", async (req, res) => {
 });
 
 // Deletes a record
-router.delete("/product/:id([0-9]*)", async (req, res) => {
+router.delete("/rating/:id([0-9]*)", async (req, res) => {
 	try {
 		await controller.delete(req.params.id);
 		res.send({
@@ -51,4 +51,4 @@ router.delete("/product/:id([0-9]*)", async (req, res) => {
 		res.send(error.message);
 	}
 });
-export { router as ProductRouter };
+export { router as RatingRouter };

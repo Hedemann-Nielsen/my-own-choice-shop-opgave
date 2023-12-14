@@ -1,10 +1,12 @@
 import { sequelize } from "../config/db.config.js";
 import { Sequelize, DataTypes, Model } from "sequelize";
-import Brand from "./brand.model.js";
+import Brand from "../models/brand.model.js";
+import Categorie from "../models/category.model.js";
+import Rating from "../models/rating.model.js";
 
-class Products extends Model {}
+class Product extends Model {}
 
-export default Products.init(
+export default Product.init(
 	{
 		id: {
 			type: DataTypes.INTEGER,
@@ -14,16 +16,14 @@ export default Products.init(
 		},
 		name: {
 			type: DataTypes.STRING,
-			allowNull: false,
 			defaultValue: "Unnamed",
 		},
 		image: {
 			type: DataTypes.STRING,
-			allowNull: false,
 		},
 		description: {
-			type: DataTypes.STRING,
-			allowNull: false,
+			type: DataTypes.TEXT,
+			defaultValue: "No description",
 		},
 		price: {
 			type: DataTypes.DOUBLE(16, 2),
@@ -39,15 +39,29 @@ export default Products.init(
 			type: DataTypes.INTEGER,
 			allowNull: false,
 			references: {
-				model: "Brand",
+				model: Brand,
+				key: "id",
+			},
+		},
+		categorie_id: {
+			type: DataTypes.INTEGER,
+			allowNull: false,
+			references: {
+				model: Categorie,
+				key: "id",
+			},
+		},
+		rating_id: {
+			type: DataTypes.INTEGER,
+			allowNull: true,
+			references: {
+				model: Rating,
 				key: "id",
 			},
 		},
 	},
 	{
 		sequelize,
-		modelName: "Products",
 		underscored: true, // Brug underscores istedet for standarden CamelCase
-		freezeTableName: true, // Brug denne hvis du vil undgå table names i flertal tabellen
 	}
 );

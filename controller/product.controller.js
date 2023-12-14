@@ -1,20 +1,18 @@
-import Products from "../models/product.model.js";
+import Product from "../models/product.model.js";
 import Brand from "../models/brand.model.js";
-import Categories from "../models/category.model.js";
-import CategoryProductRel from "../models/category_product_rel.model.js";
-// import Reviews from "../models/reviews.model.js";
+import Categorie from "../models/category.model.js";
+import Rating from "../models/rating.model.js";
 
-Products.belongsTo(Brand);
-// Products.hasMany(Reviews);
-
-Products.belongsToMany(Categories, { through: CategoryProductRel });
-Categories.belongsToMany(Products, { through: CategoryProductRel });
+Product.belongsTo(Brand);
+Product.belongsTo(Categorie);
+Product.belongsTo(Rating);
+Product.belongsToMany(Rating, { through: "product_rating_relations" });
 
 class ProductController {
 	constructor() {}
 	// Retrieve a list of records
 	listAll = async (req, res) => {
-		const result = await Products.findAll({
+		const result = await Product.findAll({
 			order: ["name"],
 		});
 		return result;
@@ -22,13 +20,19 @@ class ProductController {
 
 	// Get a list of details on a particular record
 	getOne = async (id) => {
-		const result = await Products.findByPk(id, {
+		const result = await Product.findByPk(id, {
 			include: [
 				{
 					model: Brand,
+					attributes: ["id", "name"],
 				},
 				{
-					model: Categories,
+					model: Categorie,
+					attributes: ["id", "title"],
+				},
+				{
+					model: Rating,
+					attributes: ["id", "stars", "comment"],
 				},
 			],
 		});
@@ -37,19 +41,19 @@ class ProductController {
 
 	// Create a record
 	create = async (data) => {
-		const result = await Products.create(data);
+		const result = await Product.create(data);
 		return result;
 	};
 
 	// Update a record
 	update = async (data) => {
-		const result = await Products.update(data, { where: { id: data.id } });
+		const result = await Product.update(data, { where: { id: data.id } });
 		return result;
 	};
 
 	// Deletes a record
 	delete = async (id) => {
-		const result = await Products.destroy({ where: { id: id } });
+		const result = await Product.destroy({ where: { id: id } });
 		return result;
 	};
 }

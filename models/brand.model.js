@@ -13,18 +13,15 @@ Brand.init(
 		},
 		name: {
 			type: DataTypes.STRING,
-			allowNull: false,
+			defaultValue: "Unnamed",
 		},
 		image: {
 			type: DataTypes.STRING,
-			allowNull: false,
 		},
 	},
 	{
 		sequelize,
-		modelName: "Brand",
 		underscored: true, // Brug underscores istedet for standarden CamelCase
-		freezeTableName: true, // Brug denne hvis du vil undgå table names i flertal tabellen
 	}
 );
 

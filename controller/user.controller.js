@@ -1,9 +1,9 @@
 import User from "../models/user.model.js";
-import Gender from "../models/Gender.model.js";
-// import Reviews from "../models/reviews.model.js";
+import Gender from "../models/gender.model.js";
+import Rating from "../models/rating.model.js";
 
 User.belongsTo(Gender);
-// User.hasMany(Reviews);
+User.belongsToMany(Rating, { through: "User_rating_relationships" });
 
 export default class UserController {
 	constructor() {}
@@ -17,7 +17,12 @@ export default class UserController {
 
 	// Get a list of details on a particular record
 	getOne = async (id) => {
-		const result = await User.findByPk(id);
+		const result = await User.findByPk(id, {
+			include: {
+				model: Gender,
+				attributes: ["id", "name"],
+			},
+		});
 		return result;
 	};
 

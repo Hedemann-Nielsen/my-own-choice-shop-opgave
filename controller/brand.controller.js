@@ -1,7 +1,8 @@
 import Brand from "../models/brand.model.js";
-import Products from "../models/product.model.js";
+import Product from "../models/product.model.js";
 
-Brand.hasMany(Products);
+Brand.belongsTo(Product);
+Brand.belongsToMany(Product, { through: "product_brand_relations" });
 
 class BrandController {
 	constructor() {}

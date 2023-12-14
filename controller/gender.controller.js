@@ -1,7 +1,8 @@
-import Gender from "../models/Gender.model.js";
+import Gender from "../models/gender.model.js";
 import User from "../models/user.model.js";
 
-Gender.hasMany(User);
+Gender.belongsTo(User);
+Gender.belongsToMany(User, { through: "User_gender_relations" });
 
 class GenderController {
 	constructor() {}

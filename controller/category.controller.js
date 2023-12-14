@@ -1,8 +1,8 @@
 import Category from "../models/category.model.js";
-import CategoryProductRel from "../models/category_product_rel.model.js";
-import Products from "../models/product.model.js";
+import Product from "../models/product.model.js";
 
-Category.belongsToMany(Products, { through: CategoryProductRel });
+Category.belongsTo(Product);
+Category.belongsToMany(Product, { through: "product_category_relations" });
 
 class CategoryController {
 	constructor() {}

@@ -3,10 +3,10 @@ import { sequelize } from "../config/db.config.js";
 
 //Modeller der skal oprettes når /init kører fra Postman
 import Brand from "../models/brand.model.js";
-import category_product_relModel from "../models/category_product_rel.model.js";
 import Category from "../models/category.model.js";
 import Gender from "../models/Gender.model.js";
 import Products from "../models/product.model.js";
+import Rating from "../models/rating.model.js";
 import user from "../models/user.model.js";
 // import reviews from "../models/reviews.model.js";
 
