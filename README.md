@@ -1,5 +1,5 @@
 # my-own-choice-shop-opgave
-Jeg har planlagt og udviklet et api til en webshop efter mit eget valg. Jeg har valgt en Make-up shop. For at Få den til at køre skal du følge denne installations instruktion
+Jeg har planlagt og udviklet et api til en webshop efter mit eget valg. For at Få den til at køre skal du følge denne installations instruktion
 
 # Installation af API
 Følg disse trin for at installere og køre API'et lokalt på din maskine.
